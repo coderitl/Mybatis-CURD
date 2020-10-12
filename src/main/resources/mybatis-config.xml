@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <!-- 输出日志 -->
+    <settings>
+        <setting name="logImpl" value="STDOUT_LOGGING"/>
+    </settings>
+
+
+    <!--配置环境-->
+    <environments default="mysql">
+        <!-- 配置 mysql 的环境 -->
+        <environment id="mysql">
+            <!-- 配置事务的类型 -->
+            <transactionManager type="JDBC"></transactionManager>
+            <!-- 配置数据源(连接池) -->
+            <dataSource type="POOLED">
+                <!-- driver -->
+                <property name="driver" value="com.mysql.jdbc.Driver"/>
+                <!-- url -->
+                <property name="url" value="jdbc:mysql://127.0.0.1:3306/mall"/>
+                <!-- 用户名 -->
+                <property name="username" value="root"/>
+                <!-- 密码 -->
+                <property name="password" value="root"/>
+            </dataSource>
+        </environment>
+    </environments>
+
+    <!-- 指定映射文件的位置，映射配置文件指的是每个 dao 独立的配置文件 文件路径是用斜杠分割
+     class 属性使用 . 对文件路径依次连接
+    -->
+    <mappers>
+        <!--        <mapper resource="com\ltd\aidou\dao\UserDao.xml"></mapper>-->
+        <mapper class="com.ltd.aidou.dao.UserDao"></mapper>
+        <!--
+            注意事项：
+                1. mybatis 的映射配置文件必须和 dao 的接口包结构相同
+                2. 映射配置文件的 mapper 标签 namespace 属性的取值必须是 dao 接口的全限定类名
+                3. 映射配置文件的操作配置 id 属性的取值必须是 dao 接口的方法名
+        -->
+    </mappers>
+</configuration>
+

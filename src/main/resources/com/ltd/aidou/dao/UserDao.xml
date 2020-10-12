@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ltd.aidou.dao.UserDao">
+    <!-- 数据库操作 id 必须是 接口的方法名
+        Eg. <select id="findAll"></select>   
+    -->
+    <select id="findAll" resultType="com.ltd.aidou.domain.User">
+        select * from mall.mall_info
+    </select>
+
+    <select id="userId"  resultType="com.ltd.aidou.domain.User">
+        select * from mall.mall_info where userid=#{userid}
+    </select>
+
+    <delete id="deleteUser" parameterType="int">
+        delete from mall_info where userid=#{userid}
+    </delete>
+
+    <update id="updateUser"  parameterType="com.ltd.aidou.domain.User">
+        update mall_info set username=#{username},userpassword=#{userpassword} where userid=#{userid}
+    </update>
+
+    <select id="likeFind" parameterType="string" resultType="com.ltd.aidou.domain.User">
+        select * from mall_info where username like #{username}
+    </select>
+</mapper>
